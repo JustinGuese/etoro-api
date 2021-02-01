@@ -1,8 +1,9 @@
 ### Etoro trading API
-
+![CI Docker Image Build](https://github.com/mkjiau/etoro-api/workflows/CI%20Docker%20Image%20Build/badge.svg?branch=master)
 
 ##### Requirments:
 - java 11 (JDK11)
+- Google Chrome (tested on version 78)
 - internet connection
 
 ##### Build executable jar
@@ -31,17 +32,17 @@ export PASSWORD=yourpassword
 In order to trade you have to add asset to watchlist first, then you can open or close positions with this asset.
 Your watchlist will be persisted locally in the watchlist.json if you start the server from the project folder.
 
+- Swagger UI http://localhost:8088/etoro-api/swagger-ui.html
 - API documentation http://localhost:8088/etoro-api/v2/api-docs
 - add assets to watchlist http://localhost:8088/etoro-api/watchlist/
 - open/close positions http://localhost:8088/etoro-api/positions/
 
 
-
 ### Examples
 
 ### Buy in Demo mode
-###1 Adding asset to your watchlist
-####Bitcoin
+### 1 Adding asset to your watchlist
+#### Bitcoin
 ````
  curl -X PUT \
    http://localhost:8088/etoro-api/watchlist/byName \
@@ -51,7 +52,7 @@ Your watchlist will be persisted locally in the watchlist.json if you start the 
  	"param": "btc"
  }'
 ````
-#####NASDQ100
+##### NASDQ100
 ````
  curl -X PUT \
    http://localhost:8088/etoro-api/watchlist/byName \
@@ -61,7 +62,7 @@ Your watchlist will be persisted locally in the watchlist.json if you start the 
  	"param": "nsdq100"
  }'
 ````
-#####GOLD
+##### GOLD
 ````
  curl -X PUT \
    http://localhost:8088/etoro-api/watchlist/byName \
@@ -71,14 +72,14 @@ Your watchlist will be persisted locally in the watchlist.json if you start the 
  	"param": "gold"
  }'
 ````
-####1.1 Review your watchlist
+#### 1.1 Review your watchlist
 ````
 curl -X GET \
   http://localhost:8088/etoro-api/watchlist \
   -H 'cache-control: no-cache' \
   -H 'mode: Demo'
 ````
-###2 Open position 
+### 2 Open position 
 ````
 curl -X POST \
   http://localhost:8088/etoro-api/positions/open \
@@ -116,7 +117,8 @@ curl -X POST \
         "view_openByUnits": null,
         "isDiscounted": false,
         "viewRateContext": null,
-        "openDateTime": "2020-02-22T11:28:53.3993309"
+        "openDateTime": "2020-02-22T11:28:53.3993309",
+	"openRate": 10100.1
     }
 }
 ````
@@ -128,14 +130,4 @@ curl -X DELETE \
   'http://localhost:8088/etoro-api/positions/close?id=1621284697' \
   -H 'mode: Demo'
 ````
-### Donate
-
-* [$2](https://www.paypal.me/oleh2208/2)
-
-* [$5](https://www.paypal.me/oleh2208/5)
-
-* [$10](https://www.paypal.me/oleh2208/10)
-
-
-
 
